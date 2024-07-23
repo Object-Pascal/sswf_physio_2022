@@ -1,0 +1,42 @@
+﻿@model InfoModel
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<h1>@Html.Raw(Model.Title)</h1>
+<h4>@Html.Raw(Model.Description)</h4>
+<hr />
+@if (Model.TableEntries.Count > 0)
+{
+    <div class="center-block">
+        <div class="col-md-8">
+            <div class="table-responsive">
+                <table class="table text-nowrap mb-0">
+                    <tbody class="table-light">
+                        @foreach (KeyValuePair<string, string> s in Model.TableEntries)
+                        {
+                            <tr>
+                                <td class="align-middle">@Html.Raw(s.Key)</td>
+                                <td class="align-middle">@Html.Raw(s.Value)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            @if (!string.IsNullOrEmpty(Model.ReturnAction))
+            {
+                <br />
+                if (Model.HasImportantData)
+                {
+                    <a asp-action="@Model.ReturnAction" asp-controller="@Model.ReturnController"
+                        class="btn btn-primary"
+                        onclick="if (confirm('Are you sure? Secure any important data before leaving.')){return true;}else{event.stopPropagation(); event.preventDefault();};">Return</a>
+                }
+                else
+                {
+                    <a asp-action="@Model.ReturnAction" asp-controller="@Model.ReturnController" class="btn btn-primary">Return</a>
+                }
+            }
+        </div>
+    </div>
+}

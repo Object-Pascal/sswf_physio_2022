@@ -1,0 +1,10 @@
+﻿@using Web_App.Session;
+@model int
+
+@if (!Context.Session.GetBoolean("IsPatient"))
+{
+    string title = Model == 1 ? "Appointment today" : "Appointments today";
+    <li class="ms-2 nav-item center-block">
+        <b><a class="nav-link" asp-action="Index" asp-controller="Appointment">@Model @title</a></b>
+    </li>
+}

@@ -1,0 +1,262 @@
+﻿@using Web_App.Session;
+@using Microsoft.AspNetCore.Identity
+@model Web_App.Models.PatientModel
+
+@{
+    ViewData["Title"] = "Add Patient";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    IdentityUser currentUser = Context.Session.GetObject<IdentityUser>("CurrentUser");
+
+    string underSuperVisionByTitle = Context.Session.GetBoolean("IsStudent") ? "Under Supervision By*" : "Under Supervision By";
+    string underSuperVisionByRequired = Context.Session.GetBoolean("IsStudent") ? "" : "readonly";
+}
+
+@Html.AntiForgeryToken()
+
+<head>
+    <link rel="stylesheet" href="~/css/Patient.css" />
+    <script lang="text/javascript">
+        function updateSnField(e) {
+            let studentNumberField = document.getElementById('studentNumberField');
+            if (e.checked != true) {
+                studentNumberField.readOnly = true;
+                staffNumberField.readOnly = false;
+            }
+            else {
+                studentNumberField.readOnly = false;
+                staffNumberField.readOnly = true;
+            }
+        }
+        function updateRdField(e) {
+            let resignDateField = document.getElementById('resignDateField');
+            if (e.checked != true) {
+                resignDateField.readOnly = true;
+            }
+            else {
+                resignDateField.readOnly = false;
+            }
+        }
+    </script>
+</head>
+
+<div class="narrow-content-edit margin-auto-left-right">
+    <ol id="navTo" class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Patient">Patients</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Add Patient</li>
+    </ol>
+    <hr />
+
+    <h1>Add New Patient</h1>
+    <h4>An account for this patient will be automatically created using the patients <b>E-mail</b>.</h4>
+    <hr />
+    <div class="row card pb-3">
+        <div class="col-md-6">
+            <form asp-action="Add" asp-controller="Patient">
+                <div class="row content-row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label asp-for="PatientNumber" class="control-label"></label>
+                            <input asp-for="PatientNumber" class="form-control" placeholder="Type a name..." readonly />
+                            <span asp-validation-for="PatientNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="RegisterDate" class="control-label"></label>
+                            <input asp-for="RegisterDate" type="date" class="form-control" />
+                            <span asp-validation-for="RegisterDate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Name" class="control-label"></label>
+                            <input asp-for="Name" class="form-control" placeholder="Type a name..." />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DateOfBirth" class="control-label"></label>
+                            <input asp-for="DateOfBirth" class="form-control" required />
+                            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Gender" class="control-label"></label>
+                            <input asp-for="Gender" class="form-control" placeholder="Type a gender..." />
+                            <span asp-validation-for="Gender" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Email" class="control-label"></label>
+                            <input asp-for="Email" type="email" class="form-control" placeholder="example@mail.com" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="TelephoneNumber" class="control-label"></label>
+                            <input asp-for="TelephoneNumber" type="tel" class="form-control" placeholder="+31612345678" />
+                            <span asp-validation-for="TelephoneNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group form-check">
+                            <label asp-for="IsStudent" class="form-check-label">
+                                <input id="isStudentInput" onclick="updateSnField(this)" class="form-check-input" asp-for="IsStudent" /> Is Student*
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="StudentNumber" class="control-label"></label>
+                            @if (Model.IsStudent)
+                            {
+                                <input asp-for="StudentNumber" id="studentNumberField" class="form-control" placeholder="-" />
+                            }
+                            else
+                            {
+                                <input asp-for="StudentNumber" id="studentNumberField" class="form-control" placeholder="-" readonly />
+                            }
+                            <span asp-validation-for="StudentNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="StaffNumber" class="control-label"></label>
+                            @if (!Model.IsStudent)
+                            {
+                                <input asp-for="StaffNumber" id="staffNumberField" class="form-control" placeholder="-" />
+                            }
+                            else
+                            {
+                                <input asp-for="StaffNumber" id="staffNumberField" class="form-control" placeholder="-" readonly />
+                            }
+                            <span asp-validation-for="StaffNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group form-check">
+                            <label asp-for="HasResignDate" class="form-check-label">
+                                <input id="isStudentInput" onclick="updateRdField(this)" class="form-check-input" asp-for="HasResignDate" /> Has Resign Date*
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ResignDate" class="control-label"></label>
+                            @if (Model.HasResignDate)
+                            {
+                                <input asp-for="ResignDate" type="date" id="resignDateField" class="form-control" />
+                            }
+                            else
+                            {
+                                <input asp-for="ResignDate" type="date" id="resignDateField" class="form-control" readonly />
+                            }
+                            <span asp-validation-for="ResignDate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="City" class="control-label"></label>
+                            <input asp-for="City" class="form-control" placeholder="Type a city..." />
+                            <span asp-validation-for="City" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Street" class="control-label"></label>
+                            <input asp-for="Street" class="form-control" placeholder="Type a street..." />
+                            <span asp-validation-for="Street" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="HouseNumber" class="control-label"></label>
+                            <input asp-for="HouseNumber" type="number" class="form-control" placeholder="..." />
+                            <span asp-validation-for="HouseNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label asp-for="GlobalDescription" class="control-label"></label>
+                            <input asp-for="GlobalDescription" class="form-control" placeholder="..." />
+                            <span asp-validation-for="GlobalDescription" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ExtraDescription" class="control-label"></label>
+                            <input asp-for="ExtraDescription" class="form-control" placeholder="..." />
+                            <span asp-validation-for="ExtraDescription" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="HeadOfTreatmentEntry" class="control-label"></label>
+                            <select class="dropdown form-control" name="HeadOfTreatmentEntry">
+                                @for (int i = 0; i < Model.Therapists.Count(); i++)
+                                {
+                                    if (Model.Therapists.ElementAt(i).Name == Model.HeadOfTreatmentEntry)
+                                    {
+                                        <option value="@Model.Therapists.ElementAt(i).Name" selected>@Model.Therapists.ElementAt(i).Name</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@Model.Therapists.ElementAt(i).Name">@Model.Therapists.ElementAt(i).Name</option>
+                                    }
+                                }
+                            </select>
+                            <span asp-validation-for="HeadOfTreatmentEntry" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="IntakeByEntry" class="control-label"></label>
+                            <select class="dropdown form-control" name="IntakeByEntry">
+                                @for (int i = 0; i < Model.Therapists.Count(); i++)
+                                {
+                                    if (Model.Therapists.ElementAt(i).Name == Model.IntakeByEntry)
+                                    {
+                                        <option value="@Model.Therapists.ElementAt(i).Name" selected>@Model.Therapists.ElementAt(i).Name</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@Model.Therapists.ElementAt(i).Name">@Model.Therapists.ElementAt(i).Name</option>
+                                    }
+                                }
+                            </select>
+                            <span asp-validation-for="IntakeByEntry" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">@underSuperVisionByTitle</label>
+                            <select class="dropdown form-control" name="UnderSupervisionByEntry" @underSuperVisionByRequired>
+                                @if (!Context.Session.GetBoolean("IsStudent"))
+                                {
+                                    <option value="EMPTY" selected>-</option>
+                                }
+                                @for (int i = 0; i < Model.Therapists.Count(); i++)
+                                {
+                                    if (Model.Therapists.ElementAt(i).IsStudent) continue;
+                                    if (Model.Therapists.ElementAt(i).Name == Model.UnderSupervisionByEntry)
+                                    {
+                                        <option value="@Model.Therapists.ElementAt(i).Name" selected>@Model.Therapists.ElementAt(i).Name</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@Model.Therapists.ElementAt(i).Name">@Model.Therapists.ElementAt(i).Name</option>
+                                    }
+                                }
+                            </select>
+                            <span asp-validation-for="UnderSupervisionByEntry" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DiagnoseCode" class="control-label"></label>
+                            <select class="dropdown form-control" asp-for="DiagnoseCode">
+                                @for (int i = 0; i < Model.VektisDiagnoses.Count(); i++)
+                                {
+                                    string diagnoseText = $"{Model.VektisDiagnoses.ElementAt(i).Code} - {Model.VektisDiagnoses.ElementAt(i).BodyLocalization} - {Model.VektisDiagnoses.ElementAt(i).Pathology}";
+                                    if (Model.VektisDiagnoses.ElementAt(i).Code == Model.DiagnoseCode)
+                                    {
+                                        <option value="@Model.VektisDiagnoses.ElementAt(i).Code" selected>@diagnoseText</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@Model.VektisDiagnoses.ElementAt(i).Code">@diagnoseText</option>
+                                    }
+                                }
+                            </select>
+                            <span asp-validation-for="DiagnoseCode" class="text-danger"></span>
+                        </div>
+                        <br />
+                        <div class="form-group row content-row">
+                            <div class="col-md-6">
+                                <input type="submit" value="Add" class="btn btn-primary btn-wide" />
+                            </div>
+                            <div class="col-md-6">
+                                <a asp-action="Index" asp-controller="Patient" class="btn btn-secondary btn-wide">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

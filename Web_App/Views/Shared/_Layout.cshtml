@@ -1,0 +1,114 @@
+﻿@using Web_App.Session;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Web_App</title>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <link rel="stylesheet" href="~/css/theme.css" />
+    <link rel="stylesheet" href="~/scss/theme.scss" />
+    <link rel="stylesheet" href="~/scss/_user-variables.scss" />
+    <link rel="stylesheet" href="~/scss/_user.scss" />
+</head>
+<body>
+    <header>
+        @if (Context.Session.GetBoolean("LoggedIn"))
+        {
+        <nav class="navbar-classic navbar navbar-expand-lg">
+            <ul class="navbar-nav navbar-left-wrap d-flex nav-top-wrap px-2">
+                <li class="dropdown ms-2 nav-item">
+                    <b><a class="nav-link" role="button" id="dropdownPatient" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</a></b>
+                    <div class="dropdown-menu dropdown-menu-start" aria-labelledby="dropdownPatient">
+                        @if (!Context.Session.GetBoolean("IsPatient"))
+                        {
+                            <h6 class="dropdown-header">Patients</h6>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a class="dropdown-item" asp-action="Index" asp-controller="Patient">Overview</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-action="Add" asp-controller="Patient">Add Patient</a>
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            string pn = Context.Session.GetObject<string>("PatientNumber");
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a class="dropdown-item" asp-action="View" asp-controller="Patient" asp-route-pn="@pn">Patient File</a>
+                                </li>
+                            </ul>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <b><a class="dropdown-item" asp-action="Index" asp-controller="Appointment" asp-route-pn="@pn">Appointments</a></b>
+                                </li>
+                            </ul>
+                        }
+                    </div>
+                </li>
+                @if (!Context.Session.GetBoolean("IsPatient"))
+                {
+                    @await Component.InvokeAsync("AppointmentCount")
+                }
+            </ul>
+            <ul class="navbar-nav navbar-right-wrap ms-auto d-flex nav-top-wrap px-2">
+                <li class="dropdown ms-2">
+                    <a class="rounded-circle" href="#" role="button" id="dropdownUser" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="hstack gap-3">
+                            <div class="avatar avatar-md avatar-indicators avatar-online">
+                                @{
+                                    string profilePictureBase64 = Context.Session.GetObject<string>("ProfilePictureBase64");
+                                }
+                                <img alt="avatar" src="data:image/png;base64, @profilePictureBase64" class="rounded-circle">
+                            </div>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
+                        <div class="px-4 pb-0 pt-2">
+                            <div class="lh-1 ">
+                                <h5 class="mb-1 text-primary">@this.User.Identity.Name</h5>
+                            </div>
+                            <div class=" dropdown-divider mt-3 mb-2"></div>
+                        </div>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a class="dropdown-item" asp-action="Index" asp-controller="Profile">Profile</a>
+                            </li>
+                            <li>
+                                <form asp-controller="Login" asp-action="Logout">
+                                    <div class="form-group">
+                                        <input type="submit" value="Log-out" class="dropdown-item text-dark-danger" />
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        }
+    </header>
+    @{
+        string containerStyle = Context.Session.GetBoolean("LoggedIn") ? "container site-content" : "container";
+        string mainStyle = Context.Session.GetBoolean("LoggedIn") ? "pb-3 mt-6" : "";
+    }
+    <div class="@containerStyle">
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="@mainStyle">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer text-muted">
+        &copy; 2021 - Web_App - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </footer>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

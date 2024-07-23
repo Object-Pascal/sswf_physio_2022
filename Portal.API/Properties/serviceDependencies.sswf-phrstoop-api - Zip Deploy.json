@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/sswf-ps/databases/SSWF_StamData",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:StamDataAzure",
+      "secretStore": "AzureAppSettings"
+    },
+    "mssql2": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/sswf-ps/databases/SSWF_Identity",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:IdentityAzure",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}

@@ -1,0 +1,105 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Web_App
+build_property.RootNamespace = Web_App
+build_property.ProjectDir = D:\Dropbox\Avans documenten\Informatica Verkort\Jaar 2\Periode 2.1\Serverside Web Frameworks\Individueel\Pascal_Stoop_SWF_Individueel\Web_App\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
+build_property.MSBuildProjectDirectory = D:\Dropbox\Avans documenten\Informatica Verkort\Jaar 2\Periode 2.1\Serverside Web Frameworks\Individueel\Pascal_Stoop_SWF_Individueel\Web_App
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/Dropbox/Avans documenten/Informatica Verkort/Jaar 2/Periode 2.1/Serverside Web Frameworks/Individueel/Pascal_Stoop_SWF_Individueel/Web_App/Views/Appointment/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwb2ludG1lbnRcQWRkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dropbox/Avans documenten/Informatica Verkort/Jaar 2/Periode 2.1/Serverside Web Frameworks/Individueel/Pascal_Stoop_SWF_Individueel/Web_App/Views/Appointment/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwb2ludG1lbnRcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dropbox/Avans documenten/Informatica Verkort/Jaar 2/Periode 2.1/Serverside Web Frameworks/Individueel/Pascal_Stoop_SWF_Individueel/Web_App/Views/Appointment/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwb2ludG1lbnRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dropbox/Avans documenten/Informatica Verkort/Jaar 2/Periode 2.1/Serverside Web Frameworks/Individueel/Pascal_Stoop_SWF_Individueel/Web_App/Views/Appointment/Select.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwb2ludG1lbnRcU2VsZWN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dropbox/Avans documenten/Informatica Verkort/Jaar 2/Periode 2.1/Serverside Web Frameworks/Individueel/Pascal_Stoop_SWF_Individueel/Web_App/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dropbox/Avans documenten/Informatica Verkort/Jaar 2/Periode 2.1/Serverside Web Frameworks/Individueel/Pascal_Stoop_SWF_Individueel/Web_App/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dropbox/Avans documenten/Informatica Verkort/Jaar 2/Periode 2.1/Serverside Web Frameworks/Individueel/Pascal_Stoop_SWF_Individueel/Web_App/Views/Info/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5mb1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dropbox/Avans documenten/Informatica Verkort/Jaar 2/Periode 2.1/Serverside Web Frameworks/Individueel/Pascal_Stoop_SWF_Individueel/Web_App/Views/Login/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dropbox/Avans documenten/Informatica Verkort/Jaar 2/Periode 2.1/Serverside Web Frameworks/Individueel/Pascal_Stoop_SWF_Individueel/Web_App/Views/Patient/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxBZGQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dropbox/Avans documenten/Informatica Verkort/Jaar 2/Periode 2.1/Serverside Web Frameworks/Individueel/Pascal_Stoop_SWF_Individueel/Web_App/Views/Patient/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dropbox/Avans documenten/Informatica Verkort/Jaar 2/Periode 2.1/Serverside Web Frameworks/Individueel/Pascal_Stoop_SWF_Individueel/Web_App/Views/Patient/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dropbox/Avans documenten/Informatica Verkort/Jaar 2/Periode 2.1/Serverside Web Frameworks/Individueel/Pascal_Stoop_SWF_Individueel/Web_App/Views/Patient/View.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFxWaWV3LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dropbox/Avans documenten/Informatica Verkort/Jaar 2/Periode 2.1/Serverside Web Frameworks/Individueel/Pascal_Stoop_SWF_Individueel/Web_App/Views/Profile/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dropbox/Avans documenten/Informatica Verkort/Jaar 2/Periode 2.1/Serverside Web Frameworks/Individueel/Pascal_Stoop_SWF_Individueel/Web_App/Views/Shared/Components/AppointmentCount/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcQXBwb2ludG1lbnRDb3VudFxEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dropbox/Avans documenten/Informatica Verkort/Jaar 2/Periode 2.1/Serverside Web Frameworks/Individueel/Pascal_Stoop_SWF_Individueel/Web_App/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dropbox/Avans documenten/Informatica Verkort/Jaar 2/Periode 2.1/Serverside Web Frameworks/Individueel/Pascal_Stoop_SWF_Individueel/Web_App/Views/Shared/_CookieConsentPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Db29raWVDb25zZW50UGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dropbox/Avans documenten/Informatica Verkort/Jaar 2/Periode 2.1/Serverside Web Frameworks/Individueel/Pascal_Stoop_SWF_Individueel/Web_App/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dropbox/Avans documenten/Informatica Verkort/Jaar 2/Periode 2.1/Serverside Web Frameworks/Individueel/Pascal_Stoop_SWF_Individueel/Web_App/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dropbox/Avans documenten/Informatica Verkort/Jaar 2/Periode 2.1/Serverside Web Frameworks/Individueel/Pascal_Stoop_SWF_Individueel/Web_App/Views/Treatment/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJlYXRtZW50XEFkZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dropbox/Avans documenten/Informatica Verkort/Jaar 2/Periode 2.1/Serverside Web Frameworks/Individueel/Pascal_Stoop_SWF_Individueel/Web_App/Views/Treatment/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJlYXRtZW50XEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dropbox/Avans documenten/Informatica Verkort/Jaar 2/Periode 2.1/Serverside Web Frameworks/Individueel/Pascal_Stoop_SWF_Individueel/Web_App/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dropbox/Avans documenten/Informatica Verkort/Jaar 2/Periode 2.1/Serverside Web Frameworks/Individueel/Pascal_Stoop_SWF_Individueel/Web_App/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

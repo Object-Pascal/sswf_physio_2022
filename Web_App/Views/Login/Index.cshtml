@@ -1,0 +1,52 @@
+﻿@model LoginModel
+@{
+    ViewData["Title"] = "Log-in";
+}
+
+@Html.AntiForgeryToken()
+
+<div class="container d-flex flex-column">
+    <div class="row align-items-center justify-content-center g-0 min-vh-100">
+        <div class="col-12 col-md-8 col-xxl-4 py-8 img-medium-correction">
+            <div class="center-block">
+                <div class="mb-4">
+                    <a asp-action="Index" asp-controller="Home"><img src="~/img/physio-portal-logo.png" class="mb-2 img-medium" alt="" /></a>
+                </div>
+            </div>
+            <div class="card smooth-shadow-md">
+                <div class="card-body p-6">
+                    <div class="mb-4">
+                        <p class="mb-2">Please enter your <b>therapist</b>, <b>student</b> or <b>patient</b> user information.</p>
+                    </div>
+                    <form asp-action="Index">
+                        <div class="mb-3">
+                            <label asp-for="UserName" class="form-label"></label>
+                            <input asp-for="UserName" class="form-control" placeholder="Username" />
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Password" class="form-label"></label>
+                            <input type="password" asp-for="Password" class="form-control" placeholder="Password" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">Log-in</button>
+                            </div>
+
+                            <div class="d-md-flex justify-content-between mt-4">
+                                <div class="mb-2 mb-md-0">
+                                    <a href="#" class="fs-5"> I am a new Patient</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

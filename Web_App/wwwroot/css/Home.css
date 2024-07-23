@@ -1,0 +1,21 @@
+﻿.carousel {
+    z-index: -99;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.carousel-item {
+    position: fixed;
+    width: 1920px;
+    height: 1080px;
+}
+
+.carousel-floating-content {
+    position: absolute;
+    left: 33%;
+    right: 33%;
+    top: 33%;
+    margin-top: 3.33%;
+    padding: 15px;
+}

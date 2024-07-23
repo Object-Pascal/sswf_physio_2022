@@ -1,0 +1,123 @@
+﻿@using Web_App.Session;
+
+@model Web_App.Models.AppointmentModel
+
+@{
+    ViewData["Title"] = "Schedule Appointment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string pn = Context.Session.GetObject<string>("PatientNumber");
+}
+
+@Html.AntiForgeryToken()
+
+<div class="narrow-content-edit margin-auto-left-right">
+    <ol id="navTo" class="breadcrumb">
+        @if (Context.Session.GetBoolean("IsPatient"))
+        {
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Appointment" asp-route-pn="@pn">Appointments</a></li>
+        }
+        else
+        {
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Appointment">Appointments</a></li>
+
+        }
+        @if (!Context.Session.GetBoolean("IsPatient"))
+        {
+            <li class="breadcrumb-item"><a asp-action="Select" asp-controller="Appointment">Select Patient</a></li>
+        }
+        <li class="breadcrumb-item active" aria-current="page">Schedule Appointment</li>
+        </ol>
+    <hr />
+
+    <h1>Schedule New Appointment</h1>
+    <hr />
+    <div class="row card pb-3">
+        <div class="col-md-12">
+            <form asp-action="Add" asp-controller="Appointment">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row content-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="PatientNumberEntry" class="control-label"></label>
+                            <input asp-for="PatientNumberEntry" class="form-control" readonly />
+                            <span asp-validation-for="PatientNumberEntry" class="text-danger"></span>
+                        </div>
+                        @if (Context.Session.GetBoolean("IsPatient"))
+                        {
+                            <div class="form-group">
+                                <label asp-for="Therapist.Name" class="control-label"></label>
+                                <input asp-for="Therapist.Name" class="form-control" readonly />
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="form-group">
+                                <label asp-for="TherapistIdEntry" class="control-label"></label>
+                                <select class="dropdown form-control" asp-for="TherapistIdEntry">
+                                    @for (int i = 0; i < Model.Therapists.Count(); i++)
+                                    {
+                                        if (Model.Therapists.ElementAt(i).Id == Model.TherapistIdEntry)
+                                        {
+                                            <option value="@Model.Therapists.ElementAt(i).Id" selected>@Model.Therapists.ElementAt(i).Name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@Model.Therapists.ElementAt(i).Id">@Model.Therapists.ElementAt(i).Name</option>
+                                        }
+                                    }
+                                </select>
+                                <span asp-validation-for="TherapistIdEntry" class="text-danger"></span>
+                            </div>
+                        }
+                        <div class="form-group">
+                            <label asp-for="AppointmentDateTime" class="control-label"></label>
+                            <input asp-for="AppointmentDateTime" class="form-control" />
+                            <span asp-validation-for="AppointmentDateTime" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="PatientNameEntry" class="control-label"></label>
+                            <input asp-for="PatientNameEntry" class="form-control" readonly />
+                            <span asp-validation-for="PatientNumberEntry" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="TreatmentEntry" class="control-label"></label>
+                            <select class="dropdown form-control" asp-for="TreatmentEntry">
+                                @for (int i = 0; i < Model.Treatments.Count(); i++)
+                                {
+                                    if (Model.Treatments.ElementAt(i).Id == Model.TreatmentEntry)
+                                    {
+                                        <option value="@Model.Treatments.ElementAt(i).Id" selected>@Model.Treatments.ElementAt(i).VektisType</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@Model.Treatments.ElementAt(i).Id">@Model.Treatments.ElementAt(i).VektisType</option>
+                                    }
+                                }
+                            </select>
+                            <span asp-validation-for="TreatmentEntry" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="AppointmentDescription" class="control-label"></label>
+                        <input asp-for="AppointmentDescription" class="form-control" placeholder="Type a description..." />
+                        <span asp-validation-for="AppointmentDescription" class="text-danger"></span>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group row content-row">
+                    <div class="col-md-6">
+                        <input type="submit" value="Schedule" class="btn btn-primary btn-wide" />
+                    </div>
+                    <div class="col-md-6">
+                        <a asp-action="Index" asp-controller="Appointment" class="btn btn-secondary btn-wide">Return</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

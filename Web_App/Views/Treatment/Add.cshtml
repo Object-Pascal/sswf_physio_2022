@@ -1,0 +1,85 @@
+﻿@model Web_App.Models.TreatmentModel
+
+@{
+    ViewData["Title"] = "Add Treatment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.AntiForgeryToken()
+
+<head>
+    <link rel="stylesheet" href="~/css/Treatment.css" />
+</head>
+<div class="narrow-content-edit margin-auto-left-right">
+    <ol id="navTo" class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Patient">Patients</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><a asp-action="Edit" asp-controller="Patient" asp-route-pn="@Model.PatientNumber" asp-route-tabTo="tmp-tab">@Model.PatientName</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Add Treatment</li>
+    </ol>
+    <hr />
+
+    <h1>Add New Treatment</h1>
+    <hr />
+    <div class="row card pb-3">
+        <div class="col-md-6">
+            <form asp-action="Add" asp-controller="Treatment">
+                <div class="row content-row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label asp-for="PatientNumber" class="control-label"></label>
+                            <input asp-for="PatientNumber" class="form-control" readonly />
+                            <span asp-validation-for="PatientNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="TreatmentPlanId" class="control-label"></label>
+                            <input asp-for="TreatmentPlanId" class="form-control" readonly />
+                            <span asp-validation-for="TreatmentPlanId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="VektisType" class="control-label"></label>
+                            <select class="dropdown form-control" asp-for="VektisType">
+                                @for (int i = 0; i < Model.TreatmentTypes.Count(); i++)
+                                {
+                                    string diagnoseText = $"{Model.TreatmentTypes.ElementAt(i).Code} - {Model.TreatmentTypes.ElementAt(i).IsExplanationMandatory} - {Model.TreatmentTypes.ElementAt(i).Description}";
+                                    <option value="@Model.TreatmentTypes.ElementAt(i).Code">@diagnoseText</option>
+                                }
+                            </select>
+                            <span asp-validation-for="VektisType" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Particularities" class="control-label"></label>
+                            <input asp-for="Particularities" class="form-control"placeholder="..." />
+                            <span asp-validation-for="Particularities" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Room" class="control-label"></label>
+                            <input asp-for="Room" class="form-control"placeholder="Type a room..." />
+                            <span asp-validation-for="Room" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label asp-for="AddedDate" class="control-label"></label>
+                            <input asp-for="AddedDate" class="form-control" readonly/>
+                            <span asp-validation-for="AddedDate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="EndDate" class="control-label"></label>
+                            <input asp-for="EndDate" class="form-control" />
+                            <span asp-validation-for="EndDate" class="text-danger"></span>
+                        </div>
+                        <br />
+                        <div class="form-group row content-row">
+                            <div class="col-md-6">
+                                <input type="submit" value="Save" class="btn btn-primary btn-wide" />
+                            </div>
+                            <div class="col-md-6">
+                                <a asp-action="Edit" asp-controller="Patient" asp-route-pn="@Model.PatientNumber" asp-route-tabTo="tmp-tab" class="btn btn-secondary btn-wide">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

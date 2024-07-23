@@ -1,0 +1,89 @@
+﻿@using Web_App.Session
+@model ProfileModel
+@{
+    ViewData["Title"] = Model.DisplayName;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.AntiForgeryToken()
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Profile</li>
+    <li class="breadcrumb-item active">@ViewData["Title"]</li>
+</ol>
+<div class="center-block">
+    <div class="col-md-6">
+        <div class="center-block">
+            <div class="text-center col-md-4">
+                <h2 id="title">@ViewData["Title"]</h2>
+                <br />
+            </div>
+        </div>
+        <div class="center-block pb-3">
+            <div class="col-md-6 rounded-circle avatar avatar-xxl">
+                @if (Context.Session.GetBoolean("IsAdmin") || Context.Session.GetBoolean("IsTherapist") || Context.Session.GetBoolean("IsStudent"))
+                {
+                    <img alt="avatar" src="data:image/png;base64, @Model.Therapist.ProfilePictureBase64" class="rounded-circle">
+                }
+                else if (Context.Session.GetBoolean("IsPatient"))
+                {
+                    <img alt="avatar" src="data:image/png;base64, @Model.Patient.ProfilePictureBase64" class="rounded-circle">
+                }
+            </div>
+        </div>
+        <div class="center-block pb-3">
+            <div class="col-md-6" style="padding-left: 10px; padding-right: 10px">
+                <form method="post" enctype="multipart/form-data" asp-action="UpdateProfilePicture" asp-controller="Profile">
+                    <div class="card">
+                        <div class="card-header bg-white border-bottom-0 py-4">
+                            <h4 class="mb-0">Profile Picture</h4>
+                        </div>
+                        <div class="custom-file" style="padding-left: 10px; padding-right: 10px">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <input name="file" type="file" accept="image/*" class="Form-Control custom-file-input" />
+                            </div>
+                        </div>
+                        <br />
+                        <div class="card-footer bg-white text-center">
+                            <button type="submit" class="btn btn-primary">Upload</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        @if (!Context.Session.GetBoolean("IsPatient"))
+        {
+            <div class="center-block">
+                <div class="col-md-6" style="padding-left: 10px; padding-right: 10px">
+                    <form method="post" asp-action="UpdateAvailability" asp-controller="Profile">
+                        <div class="card">
+                            <div class="card-header bg-white border-bottom-0 py-4">
+                                <h4 class="mb-0">Availability</h4>
+                            </div>
+                            <div style="padding-left: 10px; padding-right: 10px">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label asp-for="@Model.Therapist.AvailableFrom" class="control-label">Available From*</label>
+                                    <input name="from" asp-for="@Model.Therapist.AvailableFrom" type="date" class="form-control" required />
+                                    <span asp-validation-for="@Model.Therapist.AvailableFrom" class="text-danger"></span>
+                                </div>
+                                <br />
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label asp-for="@Model.Therapist.AvailableTo" class="control-label">Available To*</label>
+                                    <input name="to" asp-for="@Model.Therapist.AvailableTo" type="date" class="form-control" required />
+                                    <span asp-validation-for="@Model.Therapist.AvailableTo" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="card-footer bg-white text-center">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+</div>
